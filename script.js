@@ -6,7 +6,11 @@ const url = "https://krautipsum.com/api/kraut";
 //get data from api
 const loadKraut = () => {
   fetch(url)
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+    })
     .then((data) => {
       pElement.innerText = data.kraut;
       document.body.append(pElement);
